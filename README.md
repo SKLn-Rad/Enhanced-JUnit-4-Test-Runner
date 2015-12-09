@@ -34,4 +34,9 @@ Please contact me on ryandixon1993@gmail.com
 <h3>Issues?</h3>
 Please post a valid log and use the GitHub issues tracker
 
-&copy; RySource 2015 - 2016
+<h3>Copyright</h3>
+The EJ4TR is part of the larger RySource enterprise solution, however the EJ4TR itself is covered under wtfpl license.
+<br />
+<a href="http://www.wtfpl.net/"><img
+       src="http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png"
+       width="80" height="15" alt="WTFPL" /></a>
