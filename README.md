@@ -31,9 +31,6 @@ Please contact me on ryandixon1993@gmail.com
 <h3>Buy me a pint</h3>
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ryandixon1993%40gmail%2ecom&lc=GB&item_name=RySource%20JUnit%204%20Test%20Runner%20%2d%20Donations&no_note=0&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest">If this project has helped you as much as it helped me, please feel free to donate.</a>
 
-<h3>Comments or Suggestions?</h3>
-Please contact me on ryandixon1993@gmail.com
-
 <h3>Issues?</h3>
 Please post a valid log and use the GitHub issues tracker
 
