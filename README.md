@@ -25,12 +25,11 @@ interfaces as described in the JavaDoc or Getting Started section of the officia
 <h3>Getting Started</h3>
 Please follow the official startup documentation included in this repository.
 
+<h3>Images</h3>
+Once again, look at thr documentation.
+
 <h3>Comments or Suggestions?</h3>
 Please contact me on ryandixon1993@gmail.com
 
-<hr />
-
-<h3>Screenshots</h3>
-<i>Excel Reports</i><br />
-<a href='http://postimg.org/image/lh5rwnj4x/' target='_blank'><img src='http://s24.postimg.org/lh5rwnj4x/Untitled.jpg' border='0' alt="Untitled" /></a>
-<a href='http://postimg.org/image/6jxavn5wh/' target='_blank'><img src='http://s24.postimg.org/6jxavn5wh/Untitled1.jpg' border='0' alt="Untitled1" /></a>
+<h3>Issues?</h3>
+Please post a valid log and use the GitHub issues tracker
