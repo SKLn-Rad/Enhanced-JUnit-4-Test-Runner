@@ -22,11 +22,8 @@ interfaces as described in the JavaDoc or Getting Started section of the officia
 - onTestPassed (Fired when a test finishes without hitting any false assertions)
 - onTestStarted (Fired when a test starts executing)
 
-<h3>Getting Started</h3>
-Please follow the official startup documentation included in this repository.
-
-<h3>Images</h3>
-Once again, look at the documentation.
+<h3>Getting Started, Images and Documentation</h3>
+<a href="https://github.com/SKLn-Rad/Enhanced-JUnit-4-Test-Runner/blob/master/Enhanced%20JUnit4%20Test%20Runner.pdf">Please follow the official startup documentation included in this repository.</a>
 
 <h3>Comments or Suggestions?</h3>
 Please contact me on ryandixon1993@gmail.com
