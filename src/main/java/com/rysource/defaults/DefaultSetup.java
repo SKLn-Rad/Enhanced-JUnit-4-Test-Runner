@@ -1,6 +1,6 @@
 package com.rysource.defaults;
 
-import com.rysource.runner.annotations.Setup;
+import com.rysource.annotations.Setup;
 
 /**
  * INTERNAL USE ONLY.

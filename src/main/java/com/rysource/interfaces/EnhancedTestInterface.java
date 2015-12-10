@@ -1,4 +1,4 @@
-package com.rysource.runner.interfaces;
+package com.rysource.interfaces;
 
 import org.junit.Ignore;
 

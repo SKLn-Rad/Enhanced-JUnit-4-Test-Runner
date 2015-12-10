@@ -1,4 +1,4 @@
-package com.rysource.runner.annotations;
+package com.rysource.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

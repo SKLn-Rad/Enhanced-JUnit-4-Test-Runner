@@ -8,13 +8,13 @@ import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.RunnerBuilder;
 
+import com.rysource.annotations.Setup;
+import com.rysource.annotations.SuiteInformation;
+import com.rysource.annotations.SuiteInformation.SuitePriority;
 import com.rysource.defaults.DefaultSetup;
+import com.rysource.interfaces.EnhancedTestInterface;
 import com.rysource.report.ReportGenerator;
 import com.rysource.report.TestSuite;
-import com.rysource.runner.annotations.Setup;
-import com.rysource.runner.annotations.SuiteInformation;
-import com.rysource.runner.annotations.SuiteInformation.SuitePriority;
-import com.rysource.runner.interfaces.EnhancedTestInterface;
 
 /**
  * A custom version of the JUnit Suite package. This must be called with RunWith to get the functionality out of this solution.

@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-import com.rysource.runner.annotations.Setup;
-import com.rysource.runner.annotations.Setup.ReportType;
+import com.rysource.annotations.Setup;
+import com.rysource.annotations.Setup.ReportType;
 
 /**
  * INTERNAL USE ONLY.

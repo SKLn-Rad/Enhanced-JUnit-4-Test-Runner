@@ -1,7 +1,7 @@
 package com.rysource.report;
 
-import com.rysource.runner.annotations.TestInformation.TestPriority;
-import com.rysource.runner.annotations.TestInformation.TestType;
+import com.rysource.annotations.TestInformation.TestPriority;
+import com.rysource.annotations.TestInformation.TestType;
 
 /**
  * INTERNAL USE ONLY. POJO for containing a test case.

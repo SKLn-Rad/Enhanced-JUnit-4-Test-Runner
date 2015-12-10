@@ -10,13 +10,13 @@ import org.junit.runner.notification.RunListener;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runner.notification.StoppedByUserException;
 
+import com.rysource.annotations.SuiteInformation;
+import com.rysource.annotations.TestInformation;
+import com.rysource.annotations.TestInformation.TestPriority;
+import com.rysource.annotations.TestInformation.TestType;
+import com.rysource.interfaces.EnhancedTestInterface;
 import com.rysource.report.ReportGenerator;
 import com.rysource.report.TestCase;
-import com.rysource.runner.annotations.SuiteInformation;
-import com.rysource.runner.annotations.TestInformation;
-import com.rysource.runner.annotations.TestInformation.TestPriority;
-import com.rysource.runner.annotations.TestInformation.TestType;
-import com.rysource.runner.interfaces.EnhancedTestInterface;
 
 /**
  * INTERNAL USE ONLY. This is attached to the original notifier to abstract and

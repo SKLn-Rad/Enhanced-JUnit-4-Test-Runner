@@ -2,7 +2,7 @@ package com.rysource.report;
 
 import java.util.ArrayList;
 
-import com.rysource.runner.annotations.SuiteInformation.SuitePriority;
+import com.rysource.annotations.SuiteInformation.SuitePriority;
 
 /**
  * INTERNAL USE ONLY.
