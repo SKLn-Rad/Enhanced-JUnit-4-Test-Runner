@@ -24,6 +24,8 @@ public class EnhancedSuite extends Suite {
 
 	private static EnhancedTestInterface eti;
 
+	private static final String HEADER = "--- EJ4TR Runner - Version 1.2.0 Beta ---";
+	
 	private static boolean setupFound = false;
 	private static boolean interfaceFound = false;
 
@@ -32,7 +34,7 @@ public class EnhancedSuite extends Suite {
 	}
 
 	private static Class<?>[] getAnnotatedClasses(Class<?> klass) throws InitializationError {
-		System.out.println("--- EJ4TR Version 1.1.0 Alpha ---");
+		System.out.println(HEADER);
 		System.out.println("Performing initial configuration check.");
 
 		Suite.SuiteClasses annotation = klass.getAnnotation(Suite.SuiteClasses.class);
