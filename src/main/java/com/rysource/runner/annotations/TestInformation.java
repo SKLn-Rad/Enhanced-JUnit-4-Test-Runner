@@ -77,12 +77,12 @@ public @interface TestInformation {
 	String testDescription() default "No description given";
 
 	/**
-	 * The expected result of test. This is sent to the reported in the event
+	 * The expected behaviour of test. This is sent to the reported in the event
 	 * the test is using ATDD or BDD style. By default this is 'No expected
-	 * outcome given'.
+	 * behaviour supplied'.
 	 * 
-	 * @return - The expected result of the test case.
+	 * @return - The expected behaviour of the test case.
 	 */
-	String expectedResult() default "No expected outcome given";
+	String expectedBehaviour() default "No expected behaviour supplied";
 
 }

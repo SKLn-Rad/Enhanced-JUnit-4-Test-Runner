@@ -167,7 +167,7 @@ public class EnhancedTestNotifier extends RunNotifier {
 					if (meth.isAnnotationPresent(TestInformation.class)) {
 						TestInformation testInformation = meth.getAnnotation(TestInformation.class);
 						addToSuites(new TestCase(className, testInformation.testName(), testInformation.testDescription(),
-								testInformation.expectedResult(), testInformation.type(), testInformation.priority(),
+								testInformation.expectedBehaviour(), testInformation.type(), testInformation.priority(),
 								result, testStarted, message, stack), className);
 					} else {
 						System.out.println("No TestInformation annotation found for " + className + ":" + methodName
