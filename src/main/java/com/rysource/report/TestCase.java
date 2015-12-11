@@ -11,14 +11,14 @@ import com.rysource.annotations.TestInformation.TestType;
 public class TestCase {
 
 	private String className;
-	private String testName;
-	private String testDescription;
-	private String expectedResult;
+	private String name;
+	private String description;
+	private String expectedBehaviour;
 	private String result;
 	private TestType type;
 	private TestPriority priority;
-	private long testStarted;
-	private long testFinished;
+	private long started;
+	private long finished;
 
 	/*
 	 * On Failure
@@ -29,14 +29,14 @@ public class TestCase {
 	public TestCase(String className, String testName, String testDescription, String expectedResult, TestType type,
 			TestPriority priority, String result, long testStarted, String message, String stack) {
 		this.className = className;
-		this.testName = testName;
-		this.testDescription = testDescription;
-		this.expectedResult = expectedResult;
+		this.name = testName;
+		this.description = testDescription;
+		this.expectedBehaviour = expectedResult;
 		this.type = type;
 		this.priority = priority;
 		this.result = result;
-		this.testStarted = testStarted;
-		this.testFinished = System.currentTimeMillis();
+		this.started = testStarted;
+		this.finished = System.currentTimeMillis();
 		this.message = message;
 		this.stack = stack;
 	}
@@ -50,27 +50,27 @@ public class TestCase {
 	}
 
 	public String getTestName() {
-		return testName;
+		return name;
 	}
 
 	public void setTestName(String testName) {
-		this.testName = testName;
+		this.name = testName;
 	}
 
 	public String getTestDescription() {
-		return testDescription;
+		return description;
 	}
 
 	public void setTestDescription(String testDescription) {
-		this.testDescription = testDescription;
+		this.description = testDescription;
 	}
 
 	public String getExpectedResult() {
-		return expectedResult;
+		return expectedBehaviour;
 	}
 
 	public void setExpectedResult(String expectedResult) {
-		this.expectedResult = expectedResult;
+		this.expectedBehaviour = expectedResult;
 	}
 
 	public TestType getType() {
@@ -98,11 +98,11 @@ public class TestCase {
 	}
 
 	public long getTestStarted() {
-		return testStarted;
+		return started;
 	}
 
 	public void setTestStarted(long testStarted) {
-		this.testStarted = testStarted;
+		this.started = testStarted;
 	}
 
 	public String getResult() {
@@ -110,11 +110,11 @@ public class TestCase {
 	}
 
 	public long getTestFinished() {
-		return testFinished;
+		return finished;
 	}
 
 	public void setTestFinished(long testFinished) {
-		this.testFinished = testFinished;
+		this.finished = testFinished;
 	}
 
 	public String getMessage() {
