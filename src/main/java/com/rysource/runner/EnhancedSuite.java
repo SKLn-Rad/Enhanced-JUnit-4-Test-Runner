@@ -24,7 +24,7 @@ public class EnhancedSuite extends Suite {
 
 	private static EnhancedTestInterface eti;
 
-	private static final String HEADER = "--- EJ4TR Runner - Version 1.2.0 Beta ---";
+	private static final String HEADER = "--- EJ4TR - Version 2.0.0 ---";
 	
 	private static boolean setupFound = false;
 	private static boolean interfaceFound = false;

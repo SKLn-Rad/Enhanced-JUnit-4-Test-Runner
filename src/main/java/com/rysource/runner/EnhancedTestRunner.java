@@ -36,9 +36,11 @@ public class EnhancedTestRunner extends BlockJUnit4ClassRunner {
 		Description description = describeChild(method);
 
 		if (method.getAnnotation(Ignore.class) != null) {
-			if (eti != null)
+			if (eti != null) {
 				eti.onTestIgnored(description.getClassName(), description.getMethodName());
-			notifier.fireTestIgnored(description);
+			}
+
+			new EnhancedTestNotifier(eti, notifier).fireTestIgnored(description);
 		} else {
 			// Pass in notifier to retain native result parsing to the IDE
 			if (eti != null)

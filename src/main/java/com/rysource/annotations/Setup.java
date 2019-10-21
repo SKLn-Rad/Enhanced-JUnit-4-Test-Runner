@@ -25,8 +25,8 @@ public @interface Setup {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum ReportType {
-		EXCEL, JUNIT_XML
+	enum ReportType {
+		EXCEL, JUNIT_XML, EXTENT_REPORT,
 	}
 
 	/**

@@ -26,7 +26,7 @@ public @interface TestInformation {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum TestPriority {
+	enum TestPriority {
 		NONE, LOW, MEDIUM, HIGH, CRITICAL
 	}
 
@@ -38,7 +38,7 @@ public @interface TestInformation {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum TestType {
+	enum TestType {
 		MANUAL, AUTOMATIC
 	}
 

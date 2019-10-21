@@ -117,8 +117,12 @@ public class EnhancedTestNotifier extends RunNotifier {
 
 	@Override
 	public void fireTestIgnored(Description description) {
-		if (eti != null)
+		this.className = description.getClassName();
+		this.methodName = description.getMethodName();
+
+		if (eti != null) {
 			eti.onTestIgnored(className, methodName);
+		}
 
 		nativeNotifier.fireTestIgnored(description);
 
@@ -155,25 +159,24 @@ public class EnhancedTestNotifier extends RunNotifier {
 	 */
 
 	public void fireTestPassed() {
-		if (eti != null)
+		if (eti != null) {
 			eti.onTestPassed(className, methodName);
+		}
 	}
 
 	private void processTestCase(String className, String methodName, String result) {
+		boolean isIgnored = result == "Not Executed";
+
 		try {
 			Method[] method = Class.forName(className).getMethods();
 			for (Method meth : method) {
 				if (meth.getName().equals(methodName)) {
 					if (meth.isAnnotationPresent(TestInformation.class)) {
 						TestInformation testInformation = meth.getAnnotation(TestInformation.class);
-						addToSuites(new TestCase(className, testInformation.testName(), testInformation.testDescription(),
-								testInformation.expectedBehaviour(), testInformation.type(), testInformation.priority(),
-								result, testStarted, message, stack), className);
+						addToSuites(new TestCase(className, testInformation.testName(), testInformation.testDescription(), testInformation.expectedBehaviour(), testInformation.type(), testInformation.priority(), result, testStarted, message, stack), className);
 					} else {
-						System.out.println("No TestInformation annotation found for " + className + ":" + methodName
-								+ ", using method name instead");
-						addToSuites(new TestCase(className, methodName, "", "", TestType.AUTOMATIC, TestPriority.MEDIUM, result,
-								testStarted, message, stack), className);
+						System.out.println("No TestInformation annotation found for " + className + ":" + methodName + ", using method name instead");
+						addToSuites(new TestCase(className, methodName, "", "", TestType.AUTOMATIC, TestPriority.MEDIUM, result, testStarted, message, stack), className);
 					}
 				}
 			}

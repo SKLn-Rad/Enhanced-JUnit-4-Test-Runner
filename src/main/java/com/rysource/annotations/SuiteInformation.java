@@ -24,7 +24,7 @@ public @interface SuiteInformation {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum SuitePriority {
+	enum SuitePriority {
 		NONE, LOW, MEDIUM, HIGH, CRITICAL
 	}
 
