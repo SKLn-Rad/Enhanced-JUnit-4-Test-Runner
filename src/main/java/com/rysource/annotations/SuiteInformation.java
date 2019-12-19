@@ -40,7 +40,7 @@ public @interface SuiteInformation {
 	 * An enumeration used to identify the platforms the tests will be able to run on
 	 * This dictates the drivers to initialise during the tests
 	 *
-	 * @author Mark.Gamble@mubaloo.com
+	 * @author Mark.n.Gamble@sky.com
 	 */
 	enum drivers{
 		APP_ANDROID(0),

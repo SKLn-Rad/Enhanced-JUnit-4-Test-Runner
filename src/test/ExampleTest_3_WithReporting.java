@@ -1,6 +1,6 @@
-import com.runner.annotations.SuiteInformation;
-import com.runner.annotations.TestInformation;
-import com.runner.runner.EnhancedAssertion;
+import com.rysource.annotations.SuiteInformation;
+import com.rysource.annotations.TestInformation;
+import com.rysource.runner.EnhancedAssertion;
 import org.junit.Test;
 
 @SuiteInformation(

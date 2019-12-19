@@ -38,7 +38,7 @@ public class ExtentReport {
         extent.setReportUsesManualConfiguration(true);
         extent.setAnalysisStrategy(AnalysisStrategy.SUITE);
 
-        htmlReporter.config().setDocumentTitle("Mubaloo - Automated Testing report");
+        htmlReporter.config().setDocumentTitle("Automated Testing report");
         htmlReporter.config().setReportName(filePath.substring(0, filePath.length()-5));
         htmlReporter.config().setTheme(Theme.STANDARD);
         htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
