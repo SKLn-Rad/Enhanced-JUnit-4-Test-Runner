@@ -24,7 +24,7 @@ public @interface SuiteInformation {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum SuitePriority {
+	enum SuitePriority {
 		NONE, LOW, MEDIUM, HIGH, CRITICAL
 	}
 
@@ -35,6 +35,36 @@ public @interface SuiteInformation {
 	 * @return - The priority of the test suite.
 	 */
 	SuitePriority priority() default SuitePriority.MEDIUM;
+
+	/**
+	 * An enumeration used to identify the platforms the tests will be able to run on
+	 * This dictates the drivers to initialise during the tests
+	 *
+	 * @author Mark.n.Gamble@sky.com
+	 */
+	enum drivers{
+		APP_ANDROID(0),
+		APP_IOS(1),
+		WEB_CHROME(2),
+		WEB_SAFARI(3),
+		WEB_IE(4),
+		WEB_FIREFOX(5),
+		WEB_ANDROID(6),
+		WEB_IOS(7);
+
+		int index;
+
+		drivers(int index) {
+			this.index = index;
+		}
+	}
+
+	/**
+	 * An array odf {@link drivers} driver types to be supported for the Suite
+	 * @return - the list of drivers to support
+	 */
+	drivers[] Platforms() default{};
+
 
 	/**
 	 * The name of the test suite. This is used to provide better reports and

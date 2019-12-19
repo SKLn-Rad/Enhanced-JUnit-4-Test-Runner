@@ -26,7 +26,7 @@ public @interface TestInformation {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum TestPriority {
+	enum TestPriority {
 		NONE, LOW, MEDIUM, HIGH, CRITICAL
 	}
 
@@ -38,7 +38,7 @@ public @interface TestInformation {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum TestType {
+	enum TestType {
 		MANUAL, AUTOMATIC
 	}
 
@@ -67,6 +67,12 @@ public @interface TestInformation {
 	 * @return - The name of the test being executed.
 	 */
 	String testName() default "Unknown test case";
+
+
+	/**
+	 * The order that the test should be run in. If the the default is found then it reverts to Standard run order
+	 */
+	int testRunOrder() default Integer.MAX_VALUE;
 
 	/**
 	 * A description of the test to be represented as such on the report. By

@@ -50,3 +50,6 @@ Temporary Items
 *.prefs
 .project
 .classpath
+.idea/
+
+*report.html

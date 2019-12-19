@@ -24,7 +24,7 @@ public class EnhancedSuite extends Suite {
 
 	private static EnhancedTestInterface eti;
 
-	private static final String HEADER = "--- EJ4TR Runner - Version 1.2.0 Beta ---";
+	private static final String HEADER = "--- EJ4TR - Version 2.0.0 ---";
 	
 	private static boolean setupFound = false;
 	private static boolean interfaceFound = false;
@@ -80,6 +80,9 @@ public class EnhancedSuite extends Suite {
 
 		List<Runner> runners = new LinkedList<Runner>();
 
+		List<Runner> runnerOrder = new LinkedList<Runner>();
+
+
 		System.out.println("Searching for suite classes...");
 		for (Class<?> klazz : classes) {
 			System.out.println("Found new test suite: " + klazz.getName());
@@ -94,9 +97,24 @@ public class EnhancedSuite extends Suite {
 		System.out.println();
 		System.out.println("Starting tests...");
 		System.out.println();
+
+
+
 		return runners;
 	}
 
+	// 1) Create helper to get all unique drivers in each method in klazz
+	// 2) Create a new suite for EACH of the drivers in that list, changing its name based on the runner
+	// 3) When running a test check how many times it has been run against the same list to figure out what driver it is, and then add to the correct suite for that driver
+	// 4) ?????
+	// 5) Profit?
+
+	// Example of below
+	// Map<TestName, int>
+	// List<drivers>
+	// On test run, Map.get(TestName), if null set 0 and get drivers.get(0) -> Example Browser Web
+	// If above is 0 already, set to + 1 and do the same - drivers.get(1) -> Example: Android Web
+	// On Test finished, Map.get(TestName) and get suite for int -> Example: Suite 0 -> Browser Web, Suite 1 -> Android Web
 	private static void getSuiteInformation(Class<?> klazz) {
 		if (ReportGenerator.SUITES == null) {
 			System.out.println("An unknown error occured.");
@@ -105,8 +123,7 @@ public class EnhancedSuite extends Suite {
 				SuiteInformation suite = klazz.getAnnotation(SuiteInformation.class);
 				if (!ReportGenerator.SUITES.containsKey(suite.suiteName())) {
 					System.out.println("Found suite information! Binding to reporter.");
-					ReportGenerator.SUITES.put(suite.suiteName(), new TestSuite(suite.suiteName(),
-							suite.suiteDescription(), suite.priority(), suite.suiteAcceptanceCriteria()));
+					ReportGenerator.SUITES.put(suite.suiteName(), new TestSuite(suite.suiteName(), suite.suiteDescription(), suite.priority(), suite.suiteAcceptanceCriteria()));
 				}
 			} else {
 				if (!ReportGenerator.SUITES.containsKey(klazz.getName())) {

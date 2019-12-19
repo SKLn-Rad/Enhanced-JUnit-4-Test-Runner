@@ -1,11 +1,10 @@
 package com.rysource.annotations;
 
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import org.junit.Ignore;
 
 /**
  * The {@link Setup} annotation provides basic meta data regarding the AUT
@@ -25,8 +24,8 @@ public @interface Setup {
 	 * @author ryandixon1993@gmail.com
 	 *
 	 */
-	public enum ReportType {
-		EXCEL, JUNIT_XML
+	enum ReportType {
+		EXCEL, JUNIT_XML, EXTENT_REPORT,
 	}
 
 	/**
@@ -59,6 +58,7 @@ public @interface Setup {
 	 * 
 	 * @return - The new version of the AUT
 	 */
+
 	String version() default "Unknown Version";
 
 	/**

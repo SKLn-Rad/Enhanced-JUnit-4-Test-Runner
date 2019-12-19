@@ -1,6 +1,8 @@
 package com.rysource.runner;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.runner.Description;
@@ -32,8 +34,10 @@ public class EnhancedTestNotifier extends RunNotifier {
 	private String className;
 	private String methodName;
 	private long testStarted;
+	private long testFinished;
 
 	private RunNotifier nativeNotifier;
+	protected static ArrayList<EnhancedAssertion> enhancedAssertions;
 
 	/*
 	 * On Failure
@@ -45,7 +49,7 @@ public class EnhancedTestNotifier extends RunNotifier {
 		this.eti = eti;
 		this.nativeNotifier = notifier;
 		result = new AtomicBoolean(true);
-		testStarted = System.currentTimeMillis();
+		//this.testStarted = System.currentTimeMillis();
 	}
 
 	public EnhancedTestNotifier(RunNotifier notifier) {
@@ -57,9 +61,17 @@ public class EnhancedTestNotifier extends RunNotifier {
 	public void fireTestStarted(Description description) throws StoppedByUserException {
 		this.className = description.getClassName();
 		this.methodName = description.getMethodName();
+		this.enhancedAssertions = new ArrayList<EnhancedAssertion>();
+		this.testStarted = System.currentTimeMillis();
 
-		if (eti != null)
-			eti.onTestStarted(className, methodName);
+
+		if (eti != null) {
+			try {
+				eti.onTestStarted(className, methodName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		nativeNotifier.fireTestStarted(description);
 		super.fireTestStarted(description);
@@ -69,12 +81,13 @@ public class EnhancedTestNotifier extends RunNotifier {
 	public void fireTestFailure(Failure failure) {
 		result.set(false);
 
-		if (eti != null)
+		if (eti != null) {
 			eti.onTestFailure(className, methodName, failure.getMessage(), failure.getTrace());
+		}
 
 		this.message = failure.getMessage();
 		this.stack = failure.getTrace();
-		
+		this.testFinished =  System.currentTimeMillis();
 		nativeNotifier.fireTestFailure(failure);
 		super.fireTestFailure(failure);
 	}
@@ -99,7 +112,7 @@ public class EnhancedTestNotifier extends RunNotifier {
 			processTestCase(className, methodName, "Passed");
 		else
 			processTestCase(className, methodName, "Failed");
-
+		this.testFinished =  System.currentTimeMillis();
 		super.fireTestFinished(description);
 	}
 
@@ -117,8 +130,12 @@ public class EnhancedTestNotifier extends RunNotifier {
 
 	@Override
 	public void fireTestIgnored(Description description) {
-		if (eti != null)
+		this.className = description.getClassName();
+		this.methodName = description.getMethodName();
+
+		if (eti != null) {
 			eti.onTestIgnored(className, methodName);
+		}
 
 		nativeNotifier.fireTestIgnored(description);
 
@@ -155,25 +172,26 @@ public class EnhancedTestNotifier extends RunNotifier {
 	 */
 
 	public void fireTestPassed() {
-		if (eti != null)
+		if (eti != null) {
 			eti.onTestPassed(className, methodName);
+		}
 	}
 
 	private void processTestCase(String className, String methodName, String result) {
+		boolean isIgnored = result == "Not Executed";
+
 		try {
 			Method[] method = Class.forName(className).getMethods();
 			for (Method meth : method) {
 				if (meth.getName().equals(methodName)) {
 					if (meth.isAnnotationPresent(TestInformation.class)) {
+						// Add HashMap to Constructor
 						TestInformation testInformation = meth.getAnnotation(TestInformation.class);
-						addToSuites(new TestCase(className, testInformation.testName(), testInformation.testDescription(),
-								testInformation.expectedBehaviour(), testInformation.type(), testInformation.priority(),
-								result, testStarted, message, stack), className);
+						addToSuites(new TestCase(className, testInformation.testName(), testInformation.testDescription(), testInformation.expectedBehaviour(), testInformation.type(), testInformation.priority(), result, testStarted, testFinished,message, stack, enhancedAssertions, testInformation.testRunOrder()), className);
 					} else {
-						System.out.println("No TestInformation annotation found for " + className + ":" + methodName
-								+ ", using method name instead");
-						addToSuites(new TestCase(className, methodName, "", "", TestType.AUTOMATIC, TestPriority.MEDIUM, result,
-								testStarted, message, stack), className);
+						// Add HashMap to Constructor
+						System.out.println("No TestInformation annotation found for " + className + ":" + methodName + ", using method name instead");
+						addToSuites(new TestCase(className, methodName, "", "", TestType.AUTOMATIC, TestPriority.MEDIUM, result, testStarted, testFinished, message, stack, enhancedAssertions, 0), className);
 					}
 				}
 			}
@@ -181,6 +199,8 @@ public class EnhancedTestNotifier extends RunNotifier {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		} finally {
+			// Clear Hash Map
 		}
 	}
 
