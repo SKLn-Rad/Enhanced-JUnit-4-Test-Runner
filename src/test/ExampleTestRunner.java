@@ -19,6 +19,9 @@ import org.junit.runners.Suite;
 )
 @Suite.SuiteClasses({
         ExampleTest.class,
+        ExampleTest_1_WithReporting.class,
+        ExampleTest_2_WithReproting.class,
+        ExampleTest_3_WithReporting.class
 })
 public class ExampleTestRunner implements EnhancedTestInterface {
     @Override

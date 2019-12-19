@@ -68,6 +68,12 @@ public @interface TestInformation {
 	 */
 	String testName() default "Unknown test case";
 
+
+	/**
+	 * The order that the test should be run in. If the the default is found then it reverts to Standard run order
+	 */
+	int testRunOrder() default Integer.MAX_VALUE;
+
 	/**
 	 * A description of the test to be represented as such on the report. By
 	 * default this is 'No description given'

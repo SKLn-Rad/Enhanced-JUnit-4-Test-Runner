@@ -2,6 +2,8 @@ package com.rysource.interfaces;
 
 import org.junit.Ignore;
 
+import java.io.IOException;
+
 /**
  * This class should be implemented in the same place as the RunWith annotation to get access to live notifications on test results.
  */
@@ -30,7 +32,7 @@ public interface EnhancedTestInterface {
 	 * @param methodName
 	 *            The method name of the test
 	 */
-	public void onTestStarted(String className, String methodName);
+	public void onTestStarted(String className, String methodName) throws IOException;
 
 	/**
 	 * Fired upon a test failure

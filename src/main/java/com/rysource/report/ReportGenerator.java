@@ -1,11 +1,16 @@
 package com.rysource.report;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import com.rysource.annotations.Setup;
 import com.rysource.annotations.Setup.ReportType;
+import com.rysource.runner.EnhancedLogging;
+
 
 /**
  * INTERNAL USE ONLY.
@@ -19,6 +24,8 @@ public class ReportGenerator extends Thread {
 
     private static String path = "";
     private static File outputFile;
+    private static boolean isDebug = java.lang.management.ManagementFactory.getRuntimeMXBean().
+            getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
 
     public static final HashMap<String, TestSuite> SUITES = new HashMap<String, TestSuite>();
 
@@ -43,8 +50,12 @@ public class ReportGenerator extends Thread {
         super.start();
     }
 
+
+
+
+
     private static void prepareFilePath(String reportName) {
-        System.out.println("Preparing new report");
+        EnhancedLogging.debug("Preparing new report");
         if (new File(path + reportName).exists()) {
             System.out.println("Found old test, deleting.");
             new File(path).delete();
@@ -60,15 +71,41 @@ public class ReportGenerator extends Thread {
     }
 
     private void prepareReport() {
+        LocalDate localDate = LocalDate.now();
+        String sFileName = "";
         for (ReportType report : setup.reportType()) {
             switch (report) {
                 case EXCEL:
-                    prepareFilePath("report.xlsx");
+                    if (isDebug) {
+                        sFileName = getSetup().application() + " report.xlsx";
+                    } else {
+                        LocalDate.now();
+                        sFileName = getSetup().application() + " report - " + localDate + ".xlsx";
+                    }
+                    prepareFilePath(sFileName);
                     ExcelReport.generateExcelReport(outputFile);
                     break;
                 case EXTENT_REPORT:
-					prepareFilePath("report.html");
-					ExtentReport.generateReport(path + "report.html");
+
+                    if (isDebug) {
+
+                        sFileName =  getSetup().application() + " report.html";
+                    } else {
+                        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mmZ");
+                        LocalDate.now();
+                        sFileName =  getSetup().application() + " report - " + localDate + ".html";
+                    }
+
+                    prepareFilePath(sFileName);
+                    ExtentReport.generateReport(path + sFileName);
+
+//                    File upFile = new File (path + getSetup().application() + " report - " + localDate + ".html");
+//                    try{
+//                        uploadtoConfluence(upFile);
+//                    }catch(Exception e){
+//                        EnhancedLogging.debug("Confluence Upload Errors: \n" + e.getMessage());
+//                    }
+
                     break;
                 case JUNIT_XML:
                 default:

@@ -1,13 +1,13 @@
 package com.rysource.report;
 
+import com.sun.xml.internal.txw2.output.XmlSerializer;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Iterator;
-
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-import org.xmlpull.v1.XmlSerializer;
 
 public class JUnitReport {
 

@@ -1,5 +1,6 @@
 package com.rysource.runner;
 
+import com.rysource.comparitors.OrderedTestComparitor;
 import org.junit.Ignore;
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
@@ -8,6 +9,10 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 
 import com.rysource.interfaces.EnhancedTestInterface;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * INTERNAL USE ONLY.
@@ -50,4 +55,10 @@ public class EnhancedTestRunner extends BlockJUnit4ClassRunner {
 		}
 	}
 
+	@Override
+	protected List<FrameworkMethod> getChildren() {
+		List<FrameworkMethod> met = computeTestMethods();
+		List<FrameworkMethod> ordered = met.stream().sorted(new OrderedTestComparitor()).collect(Collectors.toList());
+		return ordered;
+	}
 }
